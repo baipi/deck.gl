@@ -6,11 +6,13 @@ import webbrowser
 
 import jinja2
 
+from ..frontend_semver import DECKGL_SEMVER
+
 
 TEMPLATES_PATH = os.path.join(os.path.dirname(__file__), './templates/')
 j2_env = jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATES_PATH),
                             trim_blocks=True)
-CDN_URL = 'https://cdn.jsdelivr.net/npm/@deck.gl/jupyter-widget@^8.0.0/dist/index.js'
+CDN_URL = 'https://cdn.jsdelivr.net/npm/@deck.gl/jupyter-widget@{}/dist/index.js'.format(DECKGL_SEMVER)
 
 def render_json_to_html(json_input, mapbox_key=None, tooltip=True):
     js = j2_env.get_template('index.j2')
